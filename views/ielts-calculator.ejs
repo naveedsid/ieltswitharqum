@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Band Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: hsl(224, 45%, 12%);
+            color: hsl(210, 40%, 98%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: hsl(215, 20%, 65%);
+            font-size: 0.95rem;
+        }
+
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .input-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(215, 20%, 65%);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: hsl(224, 45%, 18%);
+            border: 2px solid hsl(224, 30%, 30%);
+            border-radius: 0.75rem;
+            color: hsl(210, 40%, 98%);
+            outline: none;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: hsl(215, 20%, 45%);
+        }
+
+        .input-group input:focus {
+            border-color: hsl(210, 100%, 50%);
+            box-shadow: 0 0 20px 2px hsla(210, 100%, 50%, 0.3);
+        }
+
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .result-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(215, 20%, 65%);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .result-box {
+            padding: 1.5rem 3rem;
+            background-color: hsl(210, 100%, 50%);
+            border-radius: 1rem;
+            box-shadow: 0 4px 30px hsla(210, 100%, 60%, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .result-box span {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: hsl(210, 40%, 98%);
+        }
+
+        .result-description {
+            font-size: 0.875rem;
+            color: hsl(215, 20%, 65%);
+            margin-top: 0.5rem;
+        }
+
+        .input-group svg {
+            margin: auto;
+            height: 30px;
+            width: 30px;
+        }
+
+        .input-group svg path,
+        .input-group svg line {
+            color: hsl(210, 100%, 50%);
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px hsla(210, 100%, 50%, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 4px 50px hsla(210, 100%, 50%, 0.5);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .inputs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-box span {
+                font-size: 2.5rem;
+            }
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="./" style="color: #fff; margin-bottom: 40px; display: block;">
+                &laquo; Back to Home</a>
+            <img src="./assets/img/iwa-logo-blue.svg" alt="IELTS Logo"
+                style="filter: brightness(0) invert(1); width: 200px; margin-bottom: 10px;">
+            <h1>IELTS Band Calculator</h1>
+            <p>Enter your scores to calculate your overall band</p>
+        </div>
+
+        <div class="inputs-grid">
+            <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-book">
+                    <path
+                        d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3">
+                    </path>
+                </svg>
+                <label>Listening</label>
+                <input type="number" placeholder="0" min="0" max="9" step="0.5">
+            </div>
+
+            <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-book-open">
+                    <path d="M12 7v14"></path>
+                    <path
+                        d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z">
+                    </path>
+                </svg>
+                <label>Reading</label>
+                <input type="number" placeholder="0" min="0" max="9" step="0.5">
+            </div>
+
+
+            <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-pen-line">
+                    <path d="M12 20h9"></path>
+                    <path
+                        d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z">
+                    </path>
+                </svg>
+
+                <label>Writing</label>
+                <input type="number" placeholder="0" min="0" max="9" step="0.5">
+            </div>
+
+
+
+            <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-mic">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" x2="12" y1="19" y2="22"></line>
+                </svg>
+                <label>Speaking</label>
+                <input type="number" placeholder="0" min="0" max="9" step="0.5">
+            </div>
+        </div>
+
+        <div class="result-section">
+            <span class="result-label">Overall Band Score</span>
+            <div class="result-box">
+                <span>—</span>
+            </div>
+            <p class="result-description">Your IELTS Overall Band Score</p>
+        </div>
+    </div>
+</body>
+<script>
+    const inputs = document.querySelectorAll('.input-group input');
+    const resultBox = document.querySelector('.result-box span');
+
+    function calculateBand() {
+        let scores = [];
+
+        inputs.forEach(input => {
+            const value = parseFloat(input.value);
+            if (!isNaN(value)) {
+                scores.push(value);
+            }
+        });
+
+        // agar 4 values nahi hain to result clear rakho
+        if (scores.length !== 4) {
+            resultBox.textContent = '—';
+            return;
+        }
+
+        // average calculate
+        const average = scores.reduce((a, b) => a + b, 0) / 4;
+
+        // IELTS rounding (nearest 0.5)
+        const rounded = Math.round(average * 2) / 2;
+
+        resultBox.textContent = rounded.toFixed(1);
+    }
+
+    // har input par change / typing pe calculate ho
+    inputs.forEach(input => {
+        input.addEventListener('input', calculateBand);
+    });
+
+
+
+
+
+
+    function restrictBandInput(inputs) {
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                let value = input.value;
+
+                // allow only digits and one decimal point
+                if (!/^\d*\.?\d*$/.test(value)) {
+                    input.value = value.slice(0, -1);
+                    return;
+                }
+
+                // convert to number
+                const num = parseFloat(value);
+
+                // block values greater than 9
+                if (!isNaN(num) && num > 9) {
+                    input.value = '9';
+                }
+
+                // block negative values
+                if (!isNaN(num) && num < 0) {
+                    input.value = '0';
+                }
+            });
+        });
+    }
+
+    // apply restriction to all 4 inputs
+    const bandInputs = document.querySelectorAll('.input-group input');
+    restrictBandInput(bandInputs);
+</script>
+
+</html>
