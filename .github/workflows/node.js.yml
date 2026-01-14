@@ -30,4 +30,7 @@ jobs:
 
     - name: Deploy to production folder
       run: |
-        rsync -av --delete /runner-work/_work/ieltswitharqum/ieltswitharqum/ /volume1/docker/ieltswitharqum-nodejs/
+        rsync -av --delete \
+          /tmp/github-runner/_work/ieltswitharqum/ieltswitharqum/ \
+          /usr/local/app/
+
