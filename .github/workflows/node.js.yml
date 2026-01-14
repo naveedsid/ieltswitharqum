@@ -1,4 +1,3 @@
-
 name: Node.js CI
 
 on:
@@ -27,6 +26,21 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    # 🔍 DEBUG STEP — yeh real workspace dikhaega
+    - name: Debug Runner Workspace
+      run: |
+        echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+        echo "PWD = $(pwd)"
+        echo "List current dir:"
+        ls -lah
+        echo "Root folders:"
+        ls -lah /
+        echo "Tmp folders:"
+        ls -lah /tmp
+        echo "Search repo folders:"
+        find / -maxdepth 4 | grep ieltswitharqum || true
+
+    # 🚀 Deploy Step
     - name: Deploy to production folder
       run: |
         rsync -av --delete "$GITHUB_WORKSPACE/" /usr/local/app/
