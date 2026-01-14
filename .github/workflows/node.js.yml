@@ -30,3 +30,6 @@ jobs:
     - name: Deploy to production folder
       run: |
         rsync -av --delete "$GITHUB_WORKSPACE/" /usr/local/app/
+        
+    - name: Restart Node App Container
+      run: docker restart ieltswitharqum-node
